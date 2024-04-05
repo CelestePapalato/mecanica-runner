@@ -5,9 +5,21 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
+    float velocidadMaxima;
+    [SerializeField]
     float acceleration;
+    [SerializeField]
+    float deceleration;
+    [SerializeField]
+    float impulse;
+    [SerializeField]
+    LayerMask capaSuelo;
+    [SerializeField]
+    [Range(0f, 0.01f)] float raycastLength;
 
     Rigidbody rb;
+    CapsuleCollider col;
+
     Vector2 movement_input;
     Vector3 suelo_velocity = Vector3.zero;
 
@@ -16,25 +28,68 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        col = GetComponent<CapsuleCollider>();
+        float rotacionObjetivo = Camera.main.transform.eulerAngles.y;
+        rb.MoveRotation(Quaternion.Euler(0, rotacionObjetivo, 0));
     }
 
     void Update()
     {
         getInput();
+    }
+
+    private void FixedUpdate()
+    {
         move();
     }
 
     // Update is called once per frame
     void getInput()
     {
-        movement_input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        movement_input = Vector2.ClampMagnitude(movement_input, 1);
+        movement_input = new Vector2(Input.GetAxisRaw("Horizontal"), 0);
     }
 
     void move()
     {
-        Vector3 movement_vector = new Vector3(movement_input.x, 0, movement_input.y);
-        rb.AddForce(movement_vector * acceleration, ForceMode.Acceleration);
+        Vector3 input_vector = movement_input.x * transform.right;
+
+        Vector3 movement_vector = Vector3.zero;
+
+        Vector3 velocidadActual = rb.velocity;
+        velocidadActual -= Vector3.Scale(SueloManager.DireccionDeMovimiento, velocidadActual);
+        velocidadActual.y = 0;
+        Vector3 velocidadObjetivo = input_vector * velocidadMaxima;
+        float diferenciaDeVelocidad = velocidadObjetivo.magnitude - velocidadActual.magnitude;
+
+
+        if (!Mathf.Approximately(diferenciaDeVelocidad, 0))
+        {
+            float aceleracionAUsar;
+            if (diferenciaDeVelocidad > 0)
+            {
+                aceleracionAUsar = Mathf.Min(acceleration * Time.deltaTime, diferenciaDeVelocidad);
+            }
+            else
+            {
+                aceleracionAUsar = Mathf.Max(-deceleration * Time.deltaTime, diferenciaDeVelocidad);
+            }
+            diferenciaDeVelocidad = 1f / diferenciaDeVelocidad;
+            movement_vector = velocidadObjetivo - velocidadActual;
+            movement_vector *= diferenciaDeVelocidad * aceleracionAUsar;
+        }
+
+        rb.velocity += movement_vector;
+
+        //rb.AddForce(movement_vector, ForceMode.Acceleration);
+
+        if (Input.GetKey(KeyCode.Space) && estaEnPiso())
+        {
+            rb.AddForce(impulse * Vector3.up, ForceMode.Impulse);
+        }
+    }
+    private bool estaEnPiso()
+    {
+        return Physics.Raycast(transform.position, -transform.up, col.height / 2 + raycastLength, capaSuelo);
     }
 
     /*

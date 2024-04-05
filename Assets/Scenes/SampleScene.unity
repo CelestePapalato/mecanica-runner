@@ -180,7 +180,7 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8883699988071317861, guid: 84912c3ee07308c4dba1e7db0db18688, type: 3}
     m_RemovedComponents:
-    - {fileID: 9180624483338299894, guid: 84912c3ee07308c4dba1e7db0db18688, type: 3}
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -339,7 +339,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 100
   field of view: 60
-  orthographic: 0
+  orthographic: 1
   orthographic size: 5
   m_Depth: -1
   m_CullingMask:
@@ -404,7 +404,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44220e66d65958b4c8462df4f5f9b3bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: 5
+  velocidadMaxima: 7
+  acceleration: 20
+  deceleration: 20
+  impulse: 4
+  capaSuelo:
+    serializedVersion: 2
+    m_Bits: 64
+  raycastLength: 0.00415
 --- !u!54 &995212073
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -414,7 +421,7 @@ Rigidbody:
   m_GameObject: {fileID: 995212071}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 3
+  m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -431,7 +438,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 80
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
 --- !u!136 &995212074
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -584,8 +591,8 @@ MonoBehaviour:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 963194228}
   - {fileID: 705507995}
+  - {fileID: 963194228}
   - {fileID: 153156201}
   - {fileID: 995212077}
   - {fileID: 2027203714}

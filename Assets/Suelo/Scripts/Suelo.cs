@@ -20,14 +20,12 @@ public class Suelo : MonoBehaviour
     private void Start()
     {
         wasOnCamera = meshRenderer.isVisible;
-        rb.AddForce(SueloManager.DireccionDeMovimiento * SueloManager.Velocidad, ForceMode.VelocityChange);
+        //rb.AddForce(SueloManager.DireccionDeMovimiento * SueloManager.Velocidad, ForceMode.VelocityChange);
     }
 
     private void FixedUpdate()
     {
-        /*
-        transform.Translate(movementVector * SueloManager.getVelocidad() * Time.deltaTime);
-        */
+        transform.Translate(SueloManager.DireccionDeMovimiento * SueloManager.Velocidad * Time.deltaTime);
     }
 
     private void Update()

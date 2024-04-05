@@ -76,7 +76,6 @@ public class SueloManager : MonoBehaviour
         directionOfMovement *= -1;
         Vector3 offset = Vector3.Scale(tamaño, directionOfMovement);
         Vector3 positionOffset = posicionUltimo + offset;
-        Debug.Log(posicionUltimo + " + " + offset + " = " + positionOffset);
         Suelo nuevo = Instantiate(_sueloPrefab, positionOffset, Quaternion.identity);
         suelosInstanciados.Add(nuevo);
     }
