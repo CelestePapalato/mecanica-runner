@@ -364,13 +364,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.13225617, y: 0.6946282, z: -0.13225617, w: 0.6946282}
-  m_LocalPosition: {x: -8.29, y: 3, z: 0}
+  m_LocalRotation: {x: 0.20697406, y: 0.6761374, z: -0.20697406, w: 0.6761374}
+  m_LocalPosition: {x: -11.74, y: 5.55, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 21.56, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 34.04, y: 90, z: 0}
 --- !u!1 &995212071
 GameObject:
   m_ObjectHideFlags: 0
@@ -514,7 +514,7 @@ Transform:
   m_GameObject: {fileID: 995212071}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.42, y: 0.51, z: 0}
+  m_LocalPosition: {x: -7.34, y: 0.51, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -577,8 +577,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sueloPrefab: {fileID: 8883699988071317861, guid: 84912c3ee07308c4dba1e7db0db18688, type: 3}
   velocidad: 4
+  direccionDeMovimiento: {x: -1, y: 0, z: 0}
   primerSuelo: {fileID: 2004233171}
-  cantidadDeSuelosAInstanciar: 7
+  cantidadDeSuelosAInstanciar: 9
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

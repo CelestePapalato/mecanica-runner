@@ -37,10 +37,11 @@ public class PlayerController : MonoBehaviour
         rb.AddForce(movement_vector * acceleration, ForceMode.Acceleration);
     }
 
+    /*
     private void OnCollisionEnter(Collision collision)
     {
         Suelo suelo = collision.gameObject.GetComponent<Suelo>();
-        suelo_velocity = suelo.getMovementVector() * SueloManager.getVelocidad();
+        suelo_velocity = suelo.getMovementVector() * SueloManager.Velocidad;
         sueloOverlaps.Add(suelo);
     }
 
@@ -57,4 +58,5 @@ public class PlayerController : MonoBehaviour
             suelo_velocity = Vector3.zero;
         }
     }
+    */
 }

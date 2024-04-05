@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class Suelo : MonoBehaviour
 {
-    [SerializeField]
-    Vector3 movementVector = Vector3.forward;
-
     Rigidbody rb;
     MeshRenderer meshRenderer;
+
+    bool wasOnCamera;
+    bool shouldDestroy = false;
 
     private void Awake()
     {
@@ -19,7 +19,8 @@ public class Suelo : MonoBehaviour
 
     private void Start()
     {
-        rb.AddForce(movementVector * SueloManager.getVelocidad(), ForceMode.VelocityChange);
+        wasOnCamera = meshRenderer.isVisible;
+        rb.AddForce(SueloManager.DireccionDeMovimiento * SueloManager.Velocidad, ForceMode.VelocityChange);
     }
 
     private void FixedUpdate()
@@ -36,17 +37,12 @@ public class Suelo : MonoBehaviour
             return;
         }
         bool isVisible = meshRenderer.isVisible;
-        if (!isVisible)
+        wasOnCamera = isVisible || wasOnCamera;
+        shouldDestroy = wasOnCamera && !isVisible;
+        if (shouldDestroy)
         {
             SueloManager.eliminarReferenciaASuelo(this);
             Destroy(gameObject);
         }
     }
-
-    public Vector3 getMovementVector()
-    {
-        return movementVector;
-    }
-
-
 }
