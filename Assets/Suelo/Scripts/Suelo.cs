@@ -15,7 +15,6 @@ public class Suelo : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         meshRenderer = GetComponent<MeshRenderer>();
-        SueloManager.agregarSuelo(this);
     }
 
     private void Start()

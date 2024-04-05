@@ -13,11 +13,28 @@ public class SueloManager : MonoBehaviour
     Suelo sueloPrefab;
     [SerializeField]
     float velocidad;
+    [SerializeField]
+    Suelo primerSuelo;
+    [SerializeField]
+    [Tooltip("Cuántos suelos debe haber al comienzo de la partida")]
+    int cantidadDeSuelosAInstanciar = 4;
 
     private void Awake()
     {
         _sueloPrefab = sueloPrefab;
         _velocidad = velocidad;
+        if (primerSuelo)
+        {
+            suelosInstanciados.Add(primerSuelo);
+        }
+        else
+        {
+            instanciarNuevoSuelo();
+        }
+        for(int i = 1; i < cantidadDeSuelosAInstanciar; i++)
+        {
+            instanciarNuevoSuelo();
+        }
     }
 
     public static void eliminarReferenciaASuelo(Suelo suelo)
@@ -52,7 +69,8 @@ public class SueloManager : MonoBehaviour
         directionOfMovement *= -1;
         Vector3 offset = new Vector3(tamaño.x * directionOfMovement.x, tamaño.y * directionOfMovement.y, tamaño.z * directionOfMovement.z);
         Vector3 positionOffset = posicionUltimo + offset;
-        Instantiate(_sueloPrefab, positionOffset, Quaternion.identity);
+        Suelo nuevo = Instantiate(_sueloPrefab, positionOffset, Quaternion.identity);
+        suelosInstanciados.Add(nuevo);
     }
 
     public static float getVelocidad()
