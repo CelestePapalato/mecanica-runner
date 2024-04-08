@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     private int puntosParaAumentarVelocidad = 100;
 
     public static float VelocidadDeJuego { get; private set; }
-    public static int puntaje { get; private set; } = 0;
+    public static int puntaje { get; private set; }
     public static int puntajeMaximo { get; private set; }
 
     void Awake()
