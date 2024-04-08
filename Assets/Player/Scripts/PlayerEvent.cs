@@ -1,18 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerEvent : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    LayerMask deathZoneLayerMask;
 
-    // Update is called once per frame
-    void Update()
+
+    public UnityAction GameOver;
+    private void OnTriggerEnter(Collider collider)
     {
-        
+        if(collider.gameObject.layer != deathZoneLayerMask)
+        {
+            return;
+        }
+        if(GameOver != null)
+        {
+            GameOver();
+        }
     }
 }

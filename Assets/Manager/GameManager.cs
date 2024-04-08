@@ -22,6 +22,9 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0;
         puntaje = 0;
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        PlayerEvent playerEvent = player.GetComponent<PlayerEvent>();
+        playerEvent.GameOver += _GameOver;
     }
 
     private IEnumerator aumentarPuntaje()
