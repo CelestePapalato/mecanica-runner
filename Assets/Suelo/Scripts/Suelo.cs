@@ -25,7 +25,7 @@ public class Suelo : MonoBehaviour
 
     private void FixedUpdate()
     {
-        transform.Translate(SueloManager.DireccionDeMovimiento * SueloManager.Velocidad * Time.deltaTime);
+        transform.Translate(SueloManager.DireccionDeMovimiento * SueloManager.Velocidad * Time.deltaTime * GameManager.VelocidadDeJuego);
     }
 
     private void Update()
