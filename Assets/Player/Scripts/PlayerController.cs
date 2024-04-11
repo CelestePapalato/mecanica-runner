@@ -19,21 +19,33 @@ public class PlayerController : MonoBehaviour
 
     Rigidbody rb;
     CapsuleCollider col;
+    Animator animator;
 
     Vector2 movement_input;
     Vector3 suelo_velocity = Vector3.zero;
 
     List<Suelo> sueloOverlaps = new List<Suelo>();
 
-    void Awake()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         col = GetComponent<CapsuleCollider>();
-        float rotacionObjetivo = Camera.main.transform.eulerAngles.y;
+        animator = GetComponentInChildren<Animator>();
+    }
+
+    private void Start()
+    {
+        Vector3 forward = -SueloManager.DireccionDeMovimiento;
+        Debug.Log(forward);
+        //forward = Vector3.Scale(forward, transform.forward) + Vector3.Scale(forward, transform.right);
+        float rotacionObjetivo = Mathf.Atan2(forward.x, forward.z) * Mathf.Rad2Deg;
+        Debug.Log(rotacionObjetivo);
+
+        //float rotacionObjetivo = Camera.main.transform.eulerAngles.y;
         rb.MoveRotation(Quaternion.Euler(0, rotacionObjetivo, 0));
     }
 
-    void Update()
+    private void Update()
     {
         getInput();
     }
