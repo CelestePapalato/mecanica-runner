@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     LayerMask capaSuelo;
     [SerializeField]
     [Range(0f, 0.01f)] float raycastLength;
+    float previousY;
 
     Rigidbody rb;
     CapsuleCollider col;
@@ -27,6 +28,8 @@ public class PlayerController : MonoBehaviour
     Vector3 suelo_velocity = Vector3.zero;
     Vector3 puntoMaximoIzq;
     Vector3 puntoMaximoDer;
+
+    //bool estaEnPiso = false;
 
     List<Suelo> sueloOverlaps = new List<Suelo>();
 
@@ -46,10 +49,6 @@ public class PlayerController : MonoBehaviour
 
         puntoMaximoIzq = Vector3.Scale(transform.position, transform.right) + transform.right * -distanciaMaximaLateral;
         puntoMaximoDer = Vector3.Scale(transform.position, transform.right) + transform.right * distanciaMaximaLateral;
-        Debug.Log(Mathf.Approximately(0, puntoMaximoIzq.x));
-        Debug.Log(Mathf.Approximately(0, puntoMaximoDer.x));
-        Debug.Log("Izq " + puntoMaximoIzq);
-        Debug.Log("Der " + puntoMaximoDer);
     }
 
     private void FixedUpdate()
@@ -60,12 +59,26 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         getInput();
+        checkIfLanded();
     }
 
     // Update is called once per frame
     void getInput()
     {
         movement_input = new Vector2(Input.GetAxisRaw("Horizontal"), 0);
+    }
+
+    void checkIfLanded()
+    {
+        bool isJumping = animator.GetBool("Jumping");
+        if (!isJumping)
+        {
+            return;
+        }
+        if (estaEnPiso())
+        {
+            animator.SetTrigger("Land");
+        }
     }
 
     bool approximately(float a, float b, float tolerance)
@@ -145,36 +158,37 @@ public class PlayerController : MonoBehaviour
         rb.velocity += movement_vector;
 
         //rb.AddForce(movement_vector, ForceMode.Acceleration);
+        bool isJumping = animator.GetBool("Jumping");
 
-        if (Input.GetKey(KeyCode.Space) && estaEnPiso())
+        if ((Input.GetKey(KeyCode.Space) || Input.GetKeyDown(KeyCode.Space)) && estaEnPiso() && !isJumping)
         {
+            animator.SetTrigger("Jump");
             rb.AddForce(impulse * Vector3.up, ForceMode.Impulse);
+            previousY = transform.position.y;
         }
     }
     private bool estaEnPiso()
     {
-        return Physics.Raycast(transform.position, -transform.up, col.height / 2 + raycastLength, capaSuelo);
+        float altura = col.height * transform.lossyScale.y;
+        return Physics.Raycast(transform.position, -transform.up, altura / 2 + raycastLength, capaSuelo);
     }
 
     /*
     private void OnCollisionEnter(Collision collision)
     {
-        Suelo suelo = collision.gameObject.GetComponent<Suelo>();
-        suelo_velocity = suelo.getMovementVector() * SueloManager.Velocidad;
-        sueloOverlaps.Add(suelo);
+        int sueloLayer = (int)Mathf.Log(capaSuelo.value, 2);
+        if(collision.gameObject.layer == sueloLayer)
+        {
+            estaEnPiso = true;
+        }
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        Suelo suelo = collision.gameObject.GetComponent<Suelo>();
-        if (!sueloOverlaps.Contains(suelo))
+        int sueloLayer = (int)Mathf.Log(capaSuelo.value, 2);
+        if (collision.gameObject.layer == sueloLayer)
         {
-            return;
-        }
-        sueloOverlaps.Remove(suelo);
-        if(sueloOverlaps.Count == 0)
-        {
-            suelo_velocity = Vector3.zero;
+            estaEnPiso = false;
         }
     }
     */

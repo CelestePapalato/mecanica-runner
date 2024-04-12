@@ -203,7 +203,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &211017790
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1030,12 +1030,12 @@ MonoBehaviour:
   velocidadMaxima: 7
   acceleration: 20
   deceleration: 20
-  impulse: 4
+  impulse: 5
   distanciaMaximaLateral: 6
   capaSuelo:
     serializedVersion: 2
     m_Bits: 64
-  raycastLength: 0.00415
+  raycastLength: 0.00117
 --- !u!54 &995212073
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1044,7 +1044,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 995212071}
   serializedVersion: 4
-  m_Mass: 5
+  m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -1073,10 +1073,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 193
+    m_Bits: 192
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 54
+    m_Bits: 55
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -1428,8 +1428,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidadInicial: 1
-  razonDeCambio: 0.25
-  tiempoParaAumentarPuntaje: 0.1
+  razonDeCambio: 0.45
+  tiempoParaAumentarPuntaje: 0.25
   puntosParaAumentarVelocidad: 100
 --- !u!1 &1962777656
 GameObject:
@@ -1806,7 +1806,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: d02d3747f2b00e34ab830f5acf53e22d, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 1
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
