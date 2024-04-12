@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     float impulse;
     [SerializeField]
+    float distanciaMaximaLateral = 7;
+    [SerializeField]
     LayerMask capaSuelo;
     [SerializeField]
     [Range(0f, 0.01f)] float raycastLength;
@@ -23,6 +25,8 @@ public class PlayerController : MonoBehaviour
 
     Vector2 movement_input;
     Vector3 suelo_velocity = Vector3.zero;
+    Vector3 puntoMaximoIzq;
+    Vector3 puntoMaximoDer;
 
     List<Suelo> sueloOverlaps = new List<Suelo>();
 
@@ -36,29 +40,77 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         Vector3 forward = -SueloManager.DireccionDeMovimiento;
-        Debug.Log(forward);
-        //forward = Vector3.Scale(forward, transform.forward) + Vector3.Scale(forward, transform.right);
         float rotacionObjetivo = Mathf.Atan2(forward.x, forward.z) * Mathf.Rad2Deg;
-        Debug.Log(rotacionObjetivo);
+        transform.Rotate(transform.up, rotacionObjetivo);
+        //rb.MoveRotation(Quaternion.Euler(0, rotacionObjetivo, 0));
 
-        //float rotacionObjetivo = Camera.main.transform.eulerAngles.y;
-        rb.MoveRotation(Quaternion.Euler(0, rotacionObjetivo, 0));
-    }
-
-    private void Update()
-    {
-        getInput();
+        puntoMaximoIzq = Vector3.Scale(transform.position, transform.right) + transform.right * -distanciaMaximaLateral;
+        puntoMaximoDer = Vector3.Scale(transform.position, transform.right) + transform.right * distanciaMaximaLateral;
+        Debug.Log(Mathf.Approximately(0, puntoMaximoIzq.x));
+        Debug.Log(Mathf.Approximately(0, puntoMaximoDer.x));
+        Debug.Log("Izq " + puntoMaximoIzq);
+        Debug.Log("Der " + puntoMaximoDer);
     }
 
     private void FixedUpdate()
     {
         move();
+        clampPosition();
+    }
+    private void Update()
+    {
+        getInput();
     }
 
     // Update is called once per frame
     void getInput()
     {
         movement_input = new Vector2(Input.GetAxisRaw("Horizontal"), 0);
+    }
+
+    bool approximately(float a, float b, float tolerance)
+    {
+        return Mathf.Abs(a - b) < tolerance; 
+    }
+
+    void clampPosition()
+    {
+        float x = transform.position.x;
+        if (!approximately(puntoMaximoDer.x, puntoMaximoIzq.x, 0.001f))
+        {
+            // MÁGICAMENTE ESTOS NÚMEROS DEJAN DE SER 0 DE LA NADA SI EN EL VECTOR VALEN ESO??
+            float x_max = puntoMaximoDer.x;
+            float x_min = puntoMaximoIzq.x;
+            if (x_max < x_min)
+            {
+                x = Mathf.Clamp(x, x_max, x_min);
+            }
+            if (x_max > x_min)
+            {
+                x = Mathf.Clamp(x, x_min, x_max);
+            }
+        }
+
+        float z = transform.position.z;
+        if (!approximately(puntoMaximoDer.z, puntoMaximoIzq.z, 0.001f))
+        {
+            // MÁGICAMENTE ESTOS NÚMEROS DEJAN DE SER 0 DE LA NADA SI EN EL VECTOR VALEN ESO??
+            float z_max = puntoMaximoDer.z;
+            float z_min = puntoMaximoIzq.z;
+            if (z_max > z_min)
+            {
+                z = Mathf.Clamp(z, z_min, z_max);
+            }
+            if (z_max < z_min)
+            {
+                z = Mathf.Clamp(z, z_max, z_min);
+            }
+        }
+
+        Vector3 newPositon = transform.position;
+        newPositon.x = x;
+        newPositon.z = z;
+        transform.position = newPositon;
     }
 
     void move()

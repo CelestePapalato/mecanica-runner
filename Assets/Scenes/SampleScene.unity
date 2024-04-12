@@ -133,7 +133,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3573245270867777494, guid: 84912c3ee07308c4dba1e7db0db18688, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.59
+      value: -2.07
       objectReference: {fileID: 0}
     - target: {fileID: 3573245270867777494, guid: 84912c3ee07308c4dba1e7db0db18688, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1031,6 +1031,7 @@ MonoBehaviour:
   acceleration: 20
   deceleration: 20
   impulse: 4
+  distanciaMaximaLateral: 6
   capaSuelo:
     serializedVersion: 2
     m_Bits: 64
@@ -1043,7 +1044,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 995212071}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 5
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -1072,10 +1073,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 193
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 54
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -1427,8 +1428,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidadInicial: 1
-  razonDeCambio: 0.5
-  tiempoParaAumentarPuntaje: 0.5
+  razonDeCambio: 0.25
+  tiempoParaAumentarPuntaje: 0.1
   puntosParaAumentarVelocidad: 100
 --- !u!1 &1962777656
 GameObject:
@@ -1592,7 +1593,7 @@ MonoBehaviour:
   velocidad: 4
   direccionDeMovimiento: {x: -1, y: 0, z: 0}
   primerSuelo: {fileID: 2004233171}
-  cantidadDeSuelosAInstanciar: 9
+  cantidadDeSuelosAInstanciar: 3
 --- !u!1 &161181230096724624
 GameObject:
   m_ObjectHideFlags: 0
@@ -1669,7 +1670,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -1.0219178, z: -0.09396195}
-  m_LocalScale: {x: 0.5555556, y: 0.68493146, z: 0.6617038}
+  m_LocalScale: {x: 0.5555556, y: 0.6849314, z: 0.66170377}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6303818256636597416}
