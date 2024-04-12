@@ -133,7 +133,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3573245270867777494, guid: 84912c3ee07308c4dba1e7db0db18688, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.07
+      value: -9.861
       objectReference: {fileID: 0}
     - target: {fileID: 3573245270867777494, guid: 84912c3ee07308c4dba1e7db0db18688, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1591,11 +1591,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 991cb95bb6749d14287e04cc3fd8427a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sueloPrefab: {fileID: 8883699988071317861, guid: 84912c3ee07308c4dba1e7db0db18688, type: 3}
   velocidad: 4
   direccionDeMovimiento: {x: -1, y: 0, z: 0}
   primerSuelo: {fileID: 2004233171}
-  cantidadDeSuelosAInstanciar: 3
+  cantidadDeSuelosAInstanciar: 6
+  sueloPrefabs:
+  - {fileID: 8883699988071317861, guid: 84912c3ee07308c4dba1e7db0db18688, type: 3}
+  - {fileID: 9000168846300946089, guid: 51aad0c31e05762428ab2d26b24648e6, type: 3}
+  - {fileID: 9000168846300946089, guid: 63478c5044dd0e048aabca1540a9b4de, type: 3}
+  probabilidadesSuelo: 080000000300000002000000
 --- !u!1 &161181230096724624
 GameObject:
   m_ObjectHideFlags: 0

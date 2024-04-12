@@ -5,7 +5,13 @@ using UnityEngine;
 
 public class Suelo : MonoBehaviour
 {
-    Rigidbody rb;
+    [SerializeField]
+    Vector3 deviation;
+    [SerializeField]
+    float deviationSpeed;
+
+    public Vector3 spawnPosition { get; private set; }
+
     MeshRenderer meshRenderer;
 
     bool wasOnCamera;
@@ -13,19 +19,23 @@ public class Suelo : MonoBehaviour
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
         meshRenderer = GetComponent<MeshRenderer>();
+        spawnPosition = transform.position;
     }
 
     private void Start()
     {
         wasOnCamera = meshRenderer.isVisible;
-        //rb.AddForce(SueloManager.DireccionDeMovimiento * SueloManager.Velocidad, ForceMode.VelocityChange);
     }
 
     private void FixedUpdate()
     {
         transform.Translate(SueloManager.DireccionDeMovimiento * SueloManager.Velocidad * Time.deltaTime * GameManager.VelocidadDeJuego);
+        if (meshRenderer.isVisible)
+        {
+            transform.Translate(deviation * deviationSpeed * GameManager.VelocidadDeJuego * Time.deltaTime);
+        }
+        spawnPosition += SueloManager.DireccionDeMovimiento * SueloManager.Velocidad * Time.deltaTime * GameManager.VelocidadDeJuego;
     }
 
     private void Update()
