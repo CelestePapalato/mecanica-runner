@@ -1030,7 +1030,7 @@ MonoBehaviour:
   velocidadMaxima: 7
   acceleration: 20
   deceleration: 20
-  impulse: 5
+  impulse: 6
   distanciaMaximaLateral: 6
   capaSuelo:
     serializedVersion: 2
@@ -1431,6 +1431,8 @@ MonoBehaviour:
   razonDeCambio: 0.45
   tiempoParaAumentarPuntaje: 0.25
   puntosParaAumentarVelocidad: 100
+  canvasComenzarJuego: {fileID: 864183611}
+  canvasFinDelJuego: {fileID: 0}
 --- !u!1 &1962777656
 GameObject:
   m_ObjectHideFlags: 0

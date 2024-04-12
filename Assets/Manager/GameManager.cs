@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,6 +14,10 @@ public class GameManager : MonoBehaviour
     private float tiempoParaAumentarPuntaje = .5f;
     [SerializeField]
     private int puntosParaAumentarVelocidad = 100;
+    [SerializeField]
+    Canvas canvasComenzarJuego;
+    [SerializeField]
+    Canvas canvasFinDelJuego;
 
     public static float VelocidadDeJuego { get; private set; }
     public static int puntaje { get; private set; }
@@ -58,11 +63,16 @@ public class GameManager : MonoBehaviour
         {
             GameOver();
         }
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public static UnityAction GameStart;
     public void iniciarJuego()
     {
+        if (canvasComenzarJuego)
+        {
+            canvasComenzarJuego.enabled = false;
+        }
         Time.timeScale = 1;
         updateVelocity();
         StartCoroutine(aumentarPuntaje());
