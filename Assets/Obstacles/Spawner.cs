@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObstacleSpawner : MonoBehaviour
+public class Spawner : MonoBehaviour
 {
     [SerializeField] float minSpawnTimer;
     [SerializeField] float maxSpawnTimer;
     [SerializeField] float probabilidadDeNoSpawnear;
-    [SerializeField] List<Obstacle> obstacles = new List<Obstacle>();
+    [SerializeField] List<Move> obstacles = new List<Move>();
     [SerializeField] List<int> probabilidadesObstaculo = new List<int>();
 
     List<int> probabilidades = new List<int>();
@@ -64,7 +64,7 @@ public class ObstacleSpawner : MonoBehaviour
         {
             return;
         }
-        Obstacle obstacle = obstacles[index];
+        Move obstacle = obstacles[index];
         Instantiate(obstacle, transform.position, Quaternion.identity);
     }
 }
