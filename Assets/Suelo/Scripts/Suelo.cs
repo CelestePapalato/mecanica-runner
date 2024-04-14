@@ -13,24 +13,17 @@ public class Suelo : MonoBehaviour
     public Vector3 spawnPosition { get; private set; }
 
     MeshRenderer meshRenderer;
-
-    bool wasOnCamera;
-    bool shouldDestroy = false;
+    NonVisible destroyNonVisible;
 
     private void Awake()
     {
         meshRenderer = GetComponent<MeshRenderer>();
+        destroyNonVisible = GetComponent<NonVisible>();
+        destroyNonVisible.action += destroySuelo;
         spawnPosition = transform.position;
     }
-
-    private void Start()
-    {
-        wasOnCamera = meshRenderer.isVisible;
-    }
-
     private void FixedUpdate()
     {
-        transform.Translate(SueloManager.DireccionDeMovimiento * SueloManager.Velocidad * Time.deltaTime * GameManager.VelocidadDeJuego);
         if (meshRenderer.isVisible)
         {
             transform.Translate(deviation * deviationSpeed * GameManager.VelocidadDeJuego * Time.deltaTime);
@@ -38,19 +31,10 @@ public class Suelo : MonoBehaviour
         spawnPosition += SueloManager.DireccionDeMovimiento * SueloManager.Velocidad * Time.deltaTime * GameManager.VelocidadDeJuego;
     }
 
-    private void Update()
+    private void destroySuelo()
     {
-        if(Time.time == 0)
-        {
-            return;
-        }
-        bool isVisible = meshRenderer.isVisible;
-        wasOnCamera = isVisible || wasOnCamera;
-        shouldDestroy = wasOnCamera && !isVisible;
-        if (shouldDestroy)
-        {
-            SueloManager.eliminarReferenciaASuelo(this);
-            Destroy(gameObject);
-        }
+        SueloManager.eliminarReferenciaASuelo(this);
+        Destroy(gameObject);
     }
+
 }

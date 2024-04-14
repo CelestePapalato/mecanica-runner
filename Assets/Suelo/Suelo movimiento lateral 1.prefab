@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 1322529200461245517}
   - component: {fileID: 8358951365186470767}
   - component: {fileID: 7359716065162272457}
+  - component: {fileID: -872874946405663263}
+  - component: {fileID: 213296495384957280}
   - component: {fileID: 9000168846300946089}
   m_Layer: 6
   m_Name: Suelo movimiento lateral 1
@@ -106,6 +108,30 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-872874946405663263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2178949315714139009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1390bc7be415d4ab59855a070571b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &213296495384957280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2178949315714139009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45a988a16643094ea8b09665f72aae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &9000168846300946089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,4 +145,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deviation: {x: 0, y: 0, z: 1}
-  deviationSpeed: 0.7
+  deviationSpeed: 1.2
