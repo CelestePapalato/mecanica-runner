@@ -323,13 +323,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minSpawnTimer: 1.5
   maxSpawnTimer: 3
-  probabilidadDeNoSpawnear: 4
+  probabilidadDeNoSpawnear: 5
   obstacles:
   - {fileID: 8419118070412588359, guid: a28f75f6f10682f49a56006fe1d3c241, type: 3}
   - {fileID: 8419118070412588359, guid: e5cc66ccf45fff74cabb6cf5f0239b2d, type: 3}
   - {fileID: 6618639506129082905, guid: f441b1121711a8a47976f17f539fa4d6, type: 3}
   - {fileID: 2170177643431433440, guid: 9d6efc25e5763ab4d9b3be133571b417, type: 3}
-  probabilidadesObstaculo: 07000000040000000300000002000000
+  probabilidadesObstaculo: 08000000050000000400000001000000
 --- !u!33 &322374905
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -434,7 +434,7 @@ MonoBehaviour:
   - {fileID: 8419118070412588359, guid: e5cc66ccf45fff74cabb6cf5f0239b2d, type: 3}
   - {fileID: 6618639506129082905, guid: f441b1121711a8a47976f17f539fa4d6, type: 3}
   - {fileID: 2170177643431433440, guid: 9d6efc25e5763ab4d9b3be133571b417, type: 3}
-  probabilidadesObstaculo: 09000000050000000200000001000000
+  probabilidadesObstaculo: 0b000000070000000300000001000000
 --- !u!33 &527542422
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1241,13 +1241,13 @@ MonoBehaviour:
   velocidadMaxima: 7
   acceleration: 20
   deceleration: 20
-  jumpImpulse: 7
+  jumpImpulse: 6.5
   distanciaMaximaLateral: 5.5
   capaSuelo:
     serializedVersion: 2
     m_Bits: 64
   raycastLength: 0.00117
-  jumpPowerUpLength: 3
+  jumpPowerUpLength: 2.5
   jumpPowerUpMultiplier: 1.3
 --- !u!54 &995212073
 Rigidbody:
@@ -1274,7 +1274,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 114
   m_CollisionDetection: 0
 --- !u!136 &995212074
 CapsuleCollider:
@@ -1444,7 +1444,7 @@ MonoBehaviour:
   - {fileID: 8419118070412588359, guid: e5cc66ccf45fff74cabb6cf5f0239b2d, type: 3}
   - {fileID: 6618639506129082905, guid: f441b1121711a8a47976f17f539fa4d6, type: 3}
   - {fileID: 2170177643431433440, guid: 9d6efc25e5763ab4d9b3be133571b417, type: 3}
-  probabilidadesObstaculo: 09000000060000000300000002000000
+  probabilidadesObstaculo: 09000000060000000300000001000000
 --- !u!33 &1089586463
 MeshFilter:
   m_ObjectHideFlags: 0

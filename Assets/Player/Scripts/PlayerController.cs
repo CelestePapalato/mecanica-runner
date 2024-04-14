@@ -211,10 +211,8 @@ public class PlayerController : MonoBehaviour
     {
         currentJumpImpulse = jumpImpulse * jumpPowerUpMultiplier;
         jumpPowerUpOn = true;
-        Debug.Log("Jump Power Up ON");
         yield return new WaitForSeconds(jumpPowerUpLength);
         currentJumpImpulse = jumpImpulse;
         jumpPowerUpOn = false;
-        Debug.Log("Jump Power Up OFF");
     }
 }

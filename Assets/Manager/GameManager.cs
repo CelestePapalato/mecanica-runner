@@ -19,13 +19,15 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     Canvas canvasFinDelJuego;
 
+    private static GameManager current;
     public static float VelocidadDeJuego { get; private set; }
-    static int variableVelocidad = 1;
+    private static int VariableVelocidad = 1;
     public static int puntaje { get; private set; }
     public static int puntajeMaximo { get; private set; }
 
     void Awake()
     {
+        current = this;
         Time.timeScale = 0;
         puntaje = 0;
         GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -39,23 +41,23 @@ public class GameManager : MonoBehaviour
         {
             yield return new WaitForSeconds(tiempoParaAumentarPuntaje);
             puntaje++;
-            int nuevaVariableVelocidad = puntaje / puntosParaAumentarVelocidad;
-            if(nuevaVariableVelocidad > variableVelocidad)
+            puntajeMaximo = (puntajeMaximo < puntaje)? puntaje : puntajeMaximo;
+
+            if (puntaje % puntosParaAumentarVelocidad == 0)
             {
-                variableVelocidad = nuevaVariableVelocidad;
-                updateVelocity();
-            }
-            if(puntajeMaximo < puntaje)
-            {
-                puntajeMaximo = puntaje;
+                int nuevaVariableVelocidad = puntaje / puntosParaAumentarVelocidad;
+                if (nuevaVariableVelocidad > VariableVelocidad)
+                {
+                    modificarVelocidad(1);
+                }
             }
         }
     }
 
     private void updateVelocity()
     {
-        int x = puntaje / puntosParaAumentarVelocidad;
-        VelocidadDeJuego = razonDeCambio * x + velocidadInicial;
+        VelocidadDeJuego = razonDeCambio * VariableVelocidad + velocidadInicial;
+        Debug.Log(VelocidadDeJuego);
     }
 
     public static UnityAction GameOver;
@@ -66,6 +68,7 @@ public class GameManager : MonoBehaviour
         {
             GameOver();
         }
+        current.StopAllCoroutines();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
@@ -77,8 +80,9 @@ public class GameManager : MonoBehaviour
             canvasComenzarJuego.enabled = false;
         }
         Time.timeScale = 1;
+        VariableVelocidad = 0;
         updateVelocity();
-        StartCoroutine(aumentarPuntaje());
+        current.StartCoroutine(aumentarPuntaje());
         if(GameStart != null)
         {
             GameStart();
@@ -87,6 +91,7 @@ public class GameManager : MonoBehaviour
 
     public static void modificarVelocidad(int cantidad)
     {
-        variableVelocidad = Mathf.Max(1, variableVelocidad + cantidad);
+        VariableVelocidad = Mathf.Max(0, VariableVelocidad + cantidad);
+        current.updateVelocity();
     }
 }

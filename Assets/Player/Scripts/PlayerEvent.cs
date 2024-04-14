@@ -23,10 +23,8 @@ public class PlayerEvent : MonoBehaviour
     }
     private void OnTriggerEnter(Collider collider)
     {
-        Debug.Log(collider.gameObject.tag);
         if (collider.gameObject.CompareTag(jumpPowerUpTag))
         {
-            Debug.Log("gaaaa " + collider.name);
             jumpPowerUp();
             return;
         }
