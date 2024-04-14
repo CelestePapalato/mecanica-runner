@@ -1,10 +1,8 @@
 using UnityEngine;
 
-public class Shadow : MonoBehaviour
+public class PlaceOnSurface : MonoBehaviour
 {
-    [SerializeField] RectTransform shadowObject;
     [SerializeField] float raycastDistance;
-    [SerializeField] float heightAddition;
     [SerializeField] LayerMask obstacleLayer;
     [SerializeField] LayerMask sueloLayer;
 
@@ -13,27 +11,22 @@ public class Shadow : MonoBehaviour
         placeOnSurface();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        placeOnSurface();
-    }
-
     void placeOnSurface()
     {
         RaycastHit hit;
+        float heightAddition = transform.localScale.y / 2;
         if (Physics.Raycast(transform.position, Vector3.down, out hit, raycastDistance, obstacleLayer))
         {
             Vector3 position = hit.point;
             position.y += heightAddition;
-            shadowObject.position = position;
+            transform.position = position;
             return;
         }
         if (Physics.Raycast(transform.position, Vector3.down, out hit, raycastDistance, sueloLayer))
         {
             Vector3 position = hit.point;
             position.y += heightAddition;
-            shadowObject.position = position;
+            transform.position = position;
             return;
         }
     }

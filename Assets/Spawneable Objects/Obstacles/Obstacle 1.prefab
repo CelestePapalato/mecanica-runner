@@ -15,9 +15,10 @@ GameObject:
   - component: {fileID: 8419118070412588359}
   - component: {fileID: 9058535845391718195}
   - component: {fileID: 3785966839987762283}
+  - component: {fileID: 2342293419127829596}
   m_Layer: 8
   m_Name: Obstacle 1
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32,7 +33,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.725842, y: 1.8812604, z: -1.58461}
-  m_LocalScale: {x: 1, y: 1.7, z: 4}
+  m_LocalScale: {x: 1, y: 1.4, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -97,12 +98,12 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 503
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -132,6 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c45a988a16643094ea8b09665f72aae0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destroyWhenOutOfView: 1
 --- !u!114 &3785966839987762283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,3 +146,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49e5ff176614fc541830ab1b216e34b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2342293419127829596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5330187555786139843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7392960dfda0f648b0f35c4e6004416, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  raycastDistance: 10
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  sueloLayer:
+    serializedVersion: 2
+    m_Bits: 64

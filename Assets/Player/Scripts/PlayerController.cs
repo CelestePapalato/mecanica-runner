@@ -169,7 +169,7 @@ public class PlayerController : MonoBehaviour
         if ((Input.GetKey(KeyCode.Space) || Input.GetKeyDown(KeyCode.Space)) && estaEnPiso() && !isJumping)
         {
             animator.SetTrigger("Jump");
-            rb.AddForce(jumpImpulse * Vector3.up, ForceMode.Impulse);
+            rb.AddForce(currentJumpImpulse * Vector3.up, ForceMode.Impulse);
         }
     }
     private bool estaEnPiso()
@@ -204,15 +204,17 @@ public class PlayerController : MonoBehaviour
         {
             StopCoroutine(jumpRestart());
         }
-        currentJumpImpulse = jumpImpulse * jumpPowerUpMultiplier;
         StartCoroutine(jumpRestart());
     }
 
     IEnumerator jumpRestart()
     {
+        currentJumpImpulse = jumpImpulse * jumpPowerUpMultiplier;
         jumpPowerUpOn = true;
+        Debug.Log("Jump Power Up ON");
         yield return new WaitForSeconds(jumpPowerUpLength);
         currentJumpImpulse = jumpImpulse;
         jumpPowerUpOn = false;
+        Debug.Log("Jump Power Up OFF");
     }
 }

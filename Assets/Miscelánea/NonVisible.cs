@@ -3,6 +3,8 @@ using UnityEngine.Events;
 
 public class NonVisible : MonoBehaviour
 {
+    [SerializeField] bool destroyWhenOutOfView = false;
+
     MeshRenderer meshRenderer;
 
     bool wasOnCamera;
@@ -34,6 +36,10 @@ public class NonVisible : MonoBehaviour
         if(action != null)
         {
             action();
+        }
+        if (destroyWhenOutOfView)
+        {
+            Destroy(gameObject);
         }
     }
 }

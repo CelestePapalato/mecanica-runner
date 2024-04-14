@@ -6,7 +6,11 @@ public class PlayerEvent : MonoBehaviour
     [SerializeField]
     LayerMask deathZoneLayerMask;
     [SerializeField]
-    LayerMask jumpPowerUpLayerMask;
+    string jumpPowerUpTag;
+    [SerializeField]
+    string gameSpeedDebuffTag;
+    [SerializeField]
+    string obstacleTag;
     int deathZoneLayerMaskValue;
 
 
@@ -19,18 +23,23 @@ public class PlayerEvent : MonoBehaviour
     }
     private void OnTriggerEnter(Collider collider)
     {
-        if (collider.gameObject.layer == jumpPowerUpLayerMask && jumpPowerUp != null)
+        Debug.Log(collider.gameObject.tag);
+        if (collider.gameObject.CompareTag(jumpPowerUpTag))
         {
+            Debug.Log("gaaaa " + collider.name);
             jumpPowerUp();
             return;
         }
-        if (collider.gameObject.layer != deathZoneLayerMaskValue)
+        if (collider.gameObject.CompareTag(gameSpeedDebuffTag))
         {
-            return;
+            GameManager.modificarVelocidad(-2);
         }
-        if(GameOver != null)
+        if (collider.gameObject.layer == deathZoneLayerMaskValue || collider.gameObject.CompareTag(obstacleTag))
         {
-            GameOver();
+            if (GameOver != null)
+            {
+                GameOver();
+            }
         }
     }
 }

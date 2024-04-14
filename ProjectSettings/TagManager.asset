@@ -3,17 +3,20 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Jump Power Up
+  - Obstacle
+  - Game Speed Debuff
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - Suelo
   - Death Zone
-  - Obstacle
+  - Interactables
   - 
   - 
   - 

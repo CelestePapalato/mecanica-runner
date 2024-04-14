@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class SueloManager : MonoBehaviour
 {
+    static bool RandomizarTiposDeSueloAlEmpezar;
     static List<Suelo> suelosInstanciados = new List<Suelo>();
     static Suelo _sueloPrefab;
     static List<Suelo> suelos = new List<Suelo>();
@@ -12,6 +13,8 @@ public class SueloManager : MonoBehaviour
     public static float Velocidad { get; private set; }
     public static Vector3 DireccionDeMovimiento { get; private set; }
 
+    [SerializeField]
+    bool randomizarTiposDeSueloAlEmpezar = false;
     [SerializeField]
     float velocidad;
     [SerializeField]
@@ -28,6 +31,7 @@ public class SueloManager : MonoBehaviour
 
     private void Awake()
     {
+        RandomizarTiposDeSueloAlEmpezar = randomizarTiposDeSueloAlEmpezar;
         suelos = sueloPrefabs;
         for(int i = 0; i < probabilidadesSuelo.Count; i++)
         {
@@ -73,7 +77,7 @@ public class SueloManager : MonoBehaviour
 
     public static void instanciarNuevoSuelo()
     {
-        if(Time.time == 0)
+        if(Time.time == 0 && !RandomizarTiposDeSueloAlEmpezar)
         {
             _sueloPrefab = suelos[0];
         }

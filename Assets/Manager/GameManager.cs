@@ -87,6 +87,6 @@ public class GameManager : MonoBehaviour
 
     public static void modificarVelocidad(int cantidad)
     {
-        variableVelocidad = Mathf.Max(1, variableVelocidad - cantidad);
+        variableVelocidad = Mathf.Max(1, variableVelocidad + cantidad);
     }
 }
