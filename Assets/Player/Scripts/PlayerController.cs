@@ -11,33 +11,39 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     float deceleration;
     [SerializeField]
-    float impulse;
+    float jumpImpulse;
     [SerializeField]
     float distanciaMaximaLateral = 7;
     [SerializeField]
     LayerMask capaSuelo;
     [SerializeField]
     [Range(0f, 0.01f)] float raycastLength;
-    float previousY;
+    [SerializeField]
+    float jumpPowerUpLength;
+    [SerializeField]
+    float jumpPowerUpMultiplier;
+
+    float currentJumpImpulse;
 
     Rigidbody rb;
     CapsuleCollider col;
     Animator animator;
+    PlayerEvent playerEvent;
 
     Vector2 movement_input;
-    Vector3 suelo_velocity = Vector3.zero;
     Vector3 puntoMaximoIzq;
     Vector3 puntoMaximoDer;
 
-    //bool estaEnPiso = false;
-
-    List<Suelo> sueloOverlaps = new List<Suelo>();
+    bool jumpPowerUpOn = false;
 
     private void Awake()
     {
+        currentJumpImpulse = jumpImpulse;
         rb = GetComponent<Rigidbody>();
         col = GetComponent<CapsuleCollider>();
         animator = GetComponentInChildren<Animator>();
+        playerEvent = GetComponent<PlayerEvent>();
+        playerEvent.jumpPowerUp += jumpPowerUp;
     }
 
     private void Start()
@@ -163,8 +169,7 @@ public class PlayerController : MonoBehaviour
         if ((Input.GetKey(KeyCode.Space) || Input.GetKeyDown(KeyCode.Space)) && estaEnPiso() && !isJumping)
         {
             animator.SetTrigger("Jump");
-            rb.AddForce(impulse * Vector3.up, ForceMode.Impulse);
-            previousY = transform.position.y;
+            rb.AddForce(jumpImpulse * Vector3.up, ForceMode.Impulse);
         }
     }
     private bool estaEnPiso()
@@ -192,4 +197,22 @@ public class PlayerController : MonoBehaviour
         }
     }
     */
+
+    void jumpPowerUp()
+    {
+        if (jumpPowerUpOn)
+        {
+            StopCoroutine(jumpRestart());
+        }
+        currentJumpImpulse = jumpImpulse * jumpPowerUpMultiplier;
+        StartCoroutine(jumpRestart());
+    }
+
+    IEnumerator jumpRestart()
+    {
+        jumpPowerUpOn = true;
+        yield return new WaitForSeconds(jumpPowerUpLength);
+        currentJumpImpulse = jumpImpulse;
+        jumpPowerUpOn = false;
+    }
 }

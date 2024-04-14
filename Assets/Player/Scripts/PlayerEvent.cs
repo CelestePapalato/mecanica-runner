@@ -5,10 +5,13 @@ public class PlayerEvent : MonoBehaviour
 {
     [SerializeField]
     LayerMask deathZoneLayerMask;
+    [SerializeField]
+    LayerMask jumpPowerUpLayerMask;
     int deathZoneLayerMaskValue;
 
 
     public UnityAction GameOver;
+    public UnityAction jumpPowerUp;
 
     private void Awake()
     {
@@ -16,7 +19,12 @@ public class PlayerEvent : MonoBehaviour
     }
     private void OnTriggerEnter(Collider collider)
     {
-        if(collider.gameObject.layer != deathZoneLayerMaskValue)
+        if (collider.gameObject.layer == jumpPowerUpLayerMask && jumpPowerUp != null)
+        {
+            jumpPowerUp();
+            return;
+        }
+        if (collider.gameObject.layer != deathZoneLayerMaskValue)
         {
             return;
         }

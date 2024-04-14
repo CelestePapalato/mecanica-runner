@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     Canvas canvasFinDelJuego;
 
     public static float VelocidadDeJuego { get; private set; }
+    static int variableVelocidad = 1;
     public static int puntaje { get; private set; }
     public static int puntajeMaximo { get; private set; }
 
@@ -38,8 +39,10 @@ public class GameManager : MonoBehaviour
         {
             yield return new WaitForSeconds(tiempoParaAumentarPuntaje);
             puntaje++;
-            if(puntaje % puntosParaAumentarVelocidad == 0)
+            int nuevaVariableVelocidad = puntaje / puntosParaAumentarVelocidad;
+            if(nuevaVariableVelocidad > variableVelocidad)
             {
+                variableVelocidad = nuevaVariableVelocidad;
                 updateVelocity();
             }
             if(puntajeMaximo < puntaje)
@@ -80,5 +83,10 @@ public class GameManager : MonoBehaviour
         {
             GameStart();
         }
+    }
+
+    public static void modificarVelocidad(int cantidad)
+    {
+        variableVelocidad = Mathf.Max(1, variableVelocidad - cantidad);
     }
 }
