@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour
     {
         if (canvasComenzarJuego)
         {
-            canvasComenzarJuego.enabled = false;
+            canvasComenzarJuego.gameObject.SetActive(false);
         }
         Time.timeScale = 1;
         VariableVelocidad = 0;

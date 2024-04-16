@@ -323,13 +323,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minSpawnTimer: 1.5
   maxSpawnTimer: 3
-  probabilidadDeNoSpawnear: 5
+  probabilidadDeNoSpawnear: 9
   obstacles:
   - {fileID: 8419118070412588359, guid: a28f75f6f10682f49a56006fe1d3c241, type: 3}
   - {fileID: 8419118070412588359, guid: e5cc66ccf45fff74cabb6cf5f0239b2d, type: 3}
   - {fileID: 6618639506129082905, guid: f441b1121711a8a47976f17f539fa4d6, type: 3}
   - {fileID: 2170177643431433440, guid: 9d6efc25e5763ab4d9b3be133571b417, type: 3}
-  probabilidadesObstaculo: 08000000050000000400000001000000
+  - {fileID: 8419118070412588359, guid: 3aed6a0ebd60c594cb549867c5cce487, type: 3}
+  probabilidadesObstaculo: 1100000010000000070000000100000002000000
 --- !u!33 &322374905
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -428,13 +429,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minSpawnTimer: 1.5
   maxSpawnTimer: 3
-  probabilidadDeNoSpawnear: 4
+  probabilidadDeNoSpawnear: 8
   obstacles:
   - {fileID: 8419118070412588359, guid: a28f75f6f10682f49a56006fe1d3c241, type: 3}
   - {fileID: 8419118070412588359, guid: e5cc66ccf45fff74cabb6cf5f0239b2d, type: 3}
   - {fileID: 6618639506129082905, guid: f441b1121711a8a47976f17f539fa4d6, type: 3}
   - {fileID: 2170177643431433440, guid: 9d6efc25e5763ab4d9b3be133571b417, type: 3}
-  probabilidadesObstaculo: 0b000000070000000300000001000000
+  - {fileID: 8419118070412588359, guid: 3aed6a0ebd60c594cb549867c5cce487, type: 3}
+  probabilidadesObstaculo: 1100000010000000040000000100000002000000
 --- !u!33 &527542422
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1295,7 +1297,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.45
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -1438,13 +1440,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minSpawnTimer: 1.5
   maxSpawnTimer: 3
-  probabilidadDeNoSpawnear: 5
+  probabilidadDeNoSpawnear: 9
   obstacles:
   - {fileID: 8419118070412588359, guid: a28f75f6f10682f49a56006fe1d3c241, type: 3}
   - {fileID: 8419118070412588359, guid: e5cc66ccf45fff74cabb6cf5f0239b2d, type: 3}
   - {fileID: 6618639506129082905, guid: f441b1121711a8a47976f17f539fa4d6, type: 3}
   - {fileID: 2170177643431433440, guid: 9d6efc25e5763ab4d9b3be133571b417, type: 3}
-  probabilidadesObstaculo: 09000000060000000300000001000000
+  - {fileID: 8419118070412588359, guid: 3aed6a0ebd60c594cb549867c5cce487, type: 3}
+  probabilidadesObstaculo: 1100000010000000070000000100000002000000
 --- !u!33 &1089586463
 MeshFilter:
   m_ObjectHideFlags: 0
