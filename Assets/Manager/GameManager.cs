@@ -71,7 +71,6 @@ public class GameManager : MonoBehaviour
     private void updateVelocity()
     {
         VelocidadDeJuego = razonDeCambio * VariableVelocidad + velocidadInicial;
-        Debug.Log(VelocidadDeJuego);
     }
 
     public static UnityAction GameOver;

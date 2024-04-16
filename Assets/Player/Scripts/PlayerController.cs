@@ -185,26 +185,6 @@ public class PlayerController : MonoBehaviour
         return Physics.Raycast(transform.position, -transform.up, altura / 2 + raycastLength, capaSuelo);
     }
 
-    /*
-    private void OnCollisionEnter(Collision collision)
-    {
-        int sueloLayer = (int)Mathf.Log(capaSuelo.value, 2);
-        if(collision.gameObject.layer == sueloLayer)
-        {
-            estaEnPiso = true;
-        }
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        int sueloLayer = (int)Mathf.Log(capaSuelo.value, 2);
-        if (collision.gameObject.layer == sueloLayer)
-        {
-            estaEnPiso = false;
-        }
-    }
-    */
-
     void jumpPowerUp()
     {
         if (jumpPowerUpOn)

@@ -8,7 +8,6 @@ public class DestroyOnContact : MonoBehaviour
     [SerializeField] UnityEvent eventWhenTriggered;
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(name + " | " + other.name);
         if (eventWhenTriggered != null)
         {
             eventWhenTriggered.Invoke();
