@@ -7,6 +7,10 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField]
+    EnemigoEspecial enemigoEspecial;
+    [SerializeField]
+    int puntosParaActivarEnemigoEspecial;
+    [SerializeField]
     private float velocidadInicial = 1f;
     [SerializeField]
     private float razonDeCambio;
@@ -22,14 +26,15 @@ public class GameManager : MonoBehaviour
     private static GameManager current;
     public static float VelocidadDeJuego { get; private set; }
     private static int VariableVelocidad = 1;
-    public static int puntaje { get; private set; }
-    public static int puntajeMaximo { get; private set; }
+    public static int Puntaje { get; private set; }
+    public static int PuntajeMaximo { get; private set; }
+    public static UnityAction<int> PuntajeModificado;
 
     void Awake()
     {
         current = this;
         Time.timeScale = 0;
-        puntaje = 0;
+        Puntaje = 0;
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         PlayerEvent playerEvent = player.GetComponent<PlayerEvent>();
         playerEvent.GameOver += _GameOver;
@@ -40,16 +45,25 @@ public class GameManager : MonoBehaviour
         while(Time.timeScale > 0)
         {
             yield return new WaitForSeconds(tiempoParaAumentarPuntaje);
-            puntaje++;
-            puntajeMaximo = (puntajeMaximo < puntaje)? puntaje : puntajeMaximo;
-
-            if (puntaje % puntosParaAumentarVelocidad == 0)
+            Puntaje++;
+            if(PuntajeModificado != null)
             {
-                int nuevaVariableVelocidad = puntaje / puntosParaAumentarVelocidad;
+                PuntajeModificado(Puntaje);
+            }
+            PuntajeMaximo = (PuntajeMaximo < Puntaje)? Puntaje : PuntajeMaximo;
+
+            if (Puntaje % puntosParaAumentarVelocidad == 0)
+            {
+                int nuevaVariableVelocidad = Puntaje / puntosParaAumentarVelocidad;
                 if (nuevaVariableVelocidad > VariableVelocidad)
                 {
                     modificarVelocidad(1);
                 }
+            }
+
+            if(Puntaje % puntosParaActivarEnemigoEspecial == 0)
+            {
+                current.enemigoEspecial.gameObject.SetActive(true);
             }
         }
     }

@@ -23,9 +23,9 @@ public class PuntuaciónTexto : MonoBehaviour
     {
         switch (tipoAMostrar)
         {
-            case PUNTUACION.actual: text.text = GameManager.puntaje + "";
+            case PUNTUACION.actual: text.text = GameManager.Puntaje + "";
                                     break;
-            default: text.text = GameManager.puntajeMaximo + "";
+            default: text.text = GameManager.PuntajeMaximo + "";
                 break;
         }
     }

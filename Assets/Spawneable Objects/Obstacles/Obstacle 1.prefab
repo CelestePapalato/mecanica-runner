@@ -98,10 +98,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 264
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 503
+    m_Bits: 247
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
@@ -121,6 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b1390bc7be415d4ab59855a070571b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  addedSpeed: 0
 --- !u!114 &9058535845391718195
 MonoBehaviour:
   m_ObjectHideFlags: 0
