@@ -172,7 +172,8 @@ public class PlayerController : MonoBehaviour
         //rb.AddForce(movement_vector, ForceMode.Acceleration);
         bool isJumping = animator.GetBool("Jumping");
 
-        if ((Input.GetKey(KeyCode.Space) || Input.GetKeyDown(KeyCode.Space)) && estaEnPiso() && !isJumping)
+        if ((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Space)
+            || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.Space)) && estaEnPiso() && !isJumping)
         {
             animator.SetTrigger("Jump");
             rb.AddForce(currentJumpImpulse * Vector3.up, ForceMode.Impulse);
