@@ -6,6 +6,7 @@ public class EnemigoEspecial : MonoBehaviour
 {
     [Tooltip("Durante cuántos puntos el enemigo actuará")]
     [SerializeField] int PuntosDeVida;
+    [SerializeField] float tiempoDisparoInicial;
     [SerializeField] float TiempoDisparo;
     [SerializeField] Move PrefabBala;
     [SerializeField] Transform Waypoints;
@@ -75,7 +76,9 @@ public class EnemigoEspecial : MonoBehaviour
 
     IEnumerator shoot()
     {
-        while(Time.timeScale > 0)
+        yield return new WaitForSeconds(tiempoDisparoInicial);
+        Instantiate(PrefabBala, transform.position, Quaternion.identity);
+        while (Time.timeScale > 0)
         {
             yield return new WaitForSeconds(TiempoDisparo);
             Instantiate(PrefabBala, transform.position, Quaternion.identity);
