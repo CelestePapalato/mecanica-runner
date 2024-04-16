@@ -129,6 +129,12 @@ public class PlayerController : MonoBehaviour
         Vector3 newPositon = transform.position;
         newPositon.x = x;
         newPositon.z = z;
+
+        if(transform.position != newPositon)
+        {
+            rb.velocity -= new Vector3(rb.velocity.x, 0, rb.velocity.z) * Time.deltaTime;
+        }
+
         transform.position = newPositon;
     }
 
