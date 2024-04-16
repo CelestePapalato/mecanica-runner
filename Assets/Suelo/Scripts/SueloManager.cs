@@ -31,6 +31,7 @@ public class SueloManager : MonoBehaviour
 
     private void Awake()
     {
+        suelosInstanciados.Clear();
         RandomizarTiposDeSueloAlEmpezar = randomizarTiposDeSueloAlEmpezar;
         suelos = sueloPrefabs;
         for(int i = 0; i < probabilidadesSuelo.Count; i++)
@@ -87,7 +88,8 @@ public class SueloManager : MonoBehaviour
         }
         if (suelosInstanciados.Count == 0)
         {
-            Instantiate(_sueloPrefab);
+            Suelo primero = Instantiate(_sueloPrefab);
+            suelosInstanciados.Add(primero);
             return;
         }
         Suelo ultimoSuelo = suelosInstanciados.Last();
